@@ -12,42 +12,49 @@ import java.net.URL;
  *
  * @author Felipe L. Garcia
  */
-public class NetClientGet {
+public class ClientGet {
+    private static String urlPolls = "http://localhost:8084/polls";
     
     public static void main(String[] args) {
         String output = getURL();
         System.out.println(output);
-        
+                
         output = getQuestion(1);
+        System.out.println(output);
+        
+        output = getQuestionPage(1);
         System.out.println(output);
     }
    
     public static String getURL() {
-        String url = "http://localhost:8084/polls";
 
-        return restPolls(url, null,null);
+        return restPolls(urlPolls, null,null);
     }
     public static String getQuestion(int id) {
-        String token = NetClientPost.postToken("usuario", "senha");
+        String token = ClientPost.postToken("usuario", "senha");
         
-        String url = "http://localhost:8084/polls/questions/" + id;
-        String param = "{\"question_id\":" + id + "\"}";
+        String url = urlPolls+"/questions/" + id;
+        
+        String param = "{\"question_id\":" + id + "}";
+        System.out.println(param);
 
         return restPolls(url, null,token);
     }
     
     public static String getQuestionPage(int page) {
-        String token = NetClientPost.postToken("usuario", "senha");
+        String token = ClientPost.postToken("usuario", "senha");
         
-        String url = "http://localhost:8084/polls/questions"+page;
-        String param = "{\"page\":" + page + "\"}";
+        String url = urlPolls+"/questions"+page;
+        
+        
+        String param = "{\"page\":" + page + "}";
+        System.out.println(param);
 
         return restPolls(url, null,token);
-    }
-
-    
+    }    
     
     private static String restPolls(String urlGet,String input,String token) {
+        System.out.println(urlGet);
         // http://localhost:8080/RESTfulExample/json/product/get
         try {
             URL url = new URL(urlGet);

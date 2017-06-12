@@ -13,50 +13,60 @@ import java.net.URL;
  *
  * @author Felipe L. Garcia
  */
-public class NetClientPost {
-
+public class ClientPost {
+    private static String urlPolls = "http://localhost:8084/polls";
+    
     public static void main(String[] args) {
-//        String output = postToken("felipe", "1234");
-//        System.out.println(output);
-     
-        String output = postNewQuestion("Qual seu nome", "Felipe","João");
+        String output = postToken("felipe", "1234");
         System.out.println(output);
+     
+//        String output = postNewQuestion("Qual seu nome", "Felipe","João");
+//        System.out.println(output);
         
     }
 
     public static String postChoices(int idQuest, int idChoice) {
-        String token = NetClientPost.postToken("usuario", "senha");
+        String token = ClientPost.postToken("usuario", "senha");
 
-        String url = "http://localhost:8084/polls/questions/" + idQuest
+        String url = urlPolls+"/questions/" + idQuest
                 + "/choices/" + idChoice;
-        String param = "{\"idQuest\":" + idQuest + "\""
-                + ",\"idChoice\":" + idChoice + "\"}";
+        
+        
+        String param = "{\"idQuest\":" + idQuest 
+                + ",\"idChoice\":" + idChoice + "}";
+        System.out.println(param);
 
         return restPolls(url, null, token);
     }
 
     public static String postNewQuestion(String strQuestion, String... strchoices) {
-//        String token = NetClientPost.postToken("usuario", "senha");
+        String token = ClientPost.postToken("usuario", "senha");
 
-        String url = "http://localhost:8084/polls/questions";
+        String url = urlPolls+"/questions";
+        
+        
+        String array = "[\""+String.join("\",\"",strchoices)+ "\"]"; 
+        
+        String param = "{\"question\":\"" + strQuestion + "\""
+                + ",\"choices\":" +array+ "}";
+        System.out.println(param);
 
-        String param = "{\"question\":" + strQuestion + "\""
-                + ",\"choices\":" + strchoices + "\"}";
-
-        return restPolls(url, param, null);
+        return restPolls(url, param, token);
     }
 
     public static String postToken(String username, String password) {
-        String url = "http://localhost:8084/polls/tokens/" + username
-                + "/" + password;
+        String url = urlPolls+"/tokens";
+        
 
-        String param = "{\"username\":" + username + "\""
-                + ",\"password\":" + password + "\"}";
-
-        return restPolls(url, null, null);
+        String param = "{\"username\":\"" + username + "\""
+                + ",\"password\":\"" + password + "\"}";
+        System.out.println(param);
+        
+        return restPolls(url, param, null);
     }
 
     private static String restPolls(String urlPOST, String input, String token) {
+        System.out.println(urlPOST);
         // http://localhost:8080/RESTfulExample/json/product/post
         try {
             URL url = new URL(urlPOST);
@@ -64,11 +74,12 @@ public class NetClientPost {
             conn.setDoOutput(true);
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json");
-
-            //Authorization
-            if (token != null && !token.trim().isEmpty()) {
-                conn.setRequestProperty("Authorization", "token " + token);
-            }
+//            conn.setRequestProperty("Accept", "application/json");
+            
+//            //Authorization
+//            if (token != null && !token.trim().isEmpty()) {
+//                conn.setRequestProperty("Authorization", "token " + token);
+//            }
 
 //            String input = "{\"qty\":100,\"name\":\"iPad 4\"}";             
             if (input != null && !input.trim().isEmpty()) {
