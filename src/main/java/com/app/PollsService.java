@@ -44,6 +44,8 @@ public class PollsService {
 //    @Path("/test")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getURL() {
+        System.out.println("GET /root");
+        
         String[] list = new String[]{"GET /questions"};
         
         return Response.status(Status.OK).entity(list).build();
@@ -58,6 +60,8 @@ public class PollsService {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response getQuestion(@PathParam("question_id") int id) {
+        System.out.println("GET /questions/"+id);
+        
         Question quest = buscarQuestion(id);
         if (quest != null) {
             return Response.status(Status.OK).entity(quest).build();
@@ -73,6 +77,8 @@ public class PollsService {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response getQuestionPage(@QueryParam("page")int page) {
+        
+        System.out.println("GET /questions/"+page);
         
         if (listQuestions == null || listQuestions.isEmpty()) {
             return Response.noContent().build();//RETORNAR VAZIO
@@ -110,13 +116,16 @@ public class PollsService {
     /**
      * Votar na Choice
      */
-    @Secured
+//    @Secured
     @POST
     @Path("/questions/{question_id}/choices/{choice_id}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response postChoices(@PathParam("question_id") int idQuest
             ,@PathParam("choice_id") int idChoice) {
 
+        System.out.println("POST /questions/"+idQuest
+                +"/choices/"+idChoice);
+        
         Question quest = buscarQuestion(idQuest);
         if (quest == null) {
             return Response.serverError().build();//RETORNAR ERRO
@@ -141,13 +150,16 @@ public class PollsService {
     /**
      * Criar nova Question
      */
-    @Secured
+//    @Secured
     @POST
     @Path("/questions/{question}/{choices}")
     @Produces(MediaType.APPLICATION_JSON)
-//    @Consumes(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response postNewQuestion(@PathParam("question") String strQuestion
             ,@PathParam("choices") String strChoices){
+        
+        System.out.println("POST /questions/"+strQuestion
+                +"/"+strChoices);
         
         if (listQuestions == null) {
             listQuestions = new ArrayList<>();
@@ -207,6 +219,9 @@ public class PollsService {
     public Response postToken(@PathParam("username") String username,
              @PathParam("password") String password) {
 
+        System.out.println("POST /tokens/"+username
+                +"/"+password);
+         
         if (listToken == null) {
             listToken = new HashMap<>();
         }
