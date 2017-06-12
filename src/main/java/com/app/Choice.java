@@ -16,11 +16,6 @@ public class Choice {
     private String url;
     private int votes;
     
-    @Override
-    public String toString() {
-        return PollsService.getAtributosValue(this);
-    }
-    
     public Choice() {
     }
 

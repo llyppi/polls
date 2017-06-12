@@ -13,10 +13,10 @@
         <servlet-name>Polls WebService</servlet-name>
         <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
        
-<!--        <init-param>
+        <init-param>
             <param-name>com.sun.jersey.config.property.packages</param-name>
             <param-value>com.app</param-value>
-        </init-param>-->
+        </init-param>
          <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>

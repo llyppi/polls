@@ -5,8 +5,6 @@
  */
 package com.app;
 
-import java.util.Date;
-
 /**
  *
  * @author Felipe L. Garcia
@@ -14,16 +12,11 @@ import java.util.Date;
 public class Question {
     private int question_id;
     private String question;
-    private Date published_at;
+    private String published_at;
     private String url;
-    private Choice[] choice;
+    private Choice[] choices;
 
     public Question() {
-    }
-
-    @Override
-    public String toString() {
-        return PollsService.getAtributosValue(this);
     }
 
     public String getQuestion() {
@@ -42,20 +35,20 @@ public class Question {
         this.question_id = question_id;
     }
 
-    public Date getPublished_at() {
+    public String getPublished_at() {
         return published_at;
     }
 
-    public void setPublished_at(Date published_at) {
+    public void setPublished_at(String published_at) {
         this.published_at = published_at;
     }
 
-    public Choice[] getChoice() {
-        return choice;
+    public Choice[] getChoices() {
+        return choices;
     }
 
-    public void setChoice(Choice... choice) {
-        this.choice = choice;
+    public void setChoices(Choice... choices) {
+        this.choices = choices;
     }
 
     public String getUrl() {

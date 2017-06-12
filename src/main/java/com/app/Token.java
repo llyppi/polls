@@ -16,10 +16,6 @@ public class Token {
     public Token() {
     }
 
-    @Override
-    public String toString() {
-        return PollsService.getAtributosValue(this);
-    }
     public String getAccess_token() {
         return access_token;
     }

@@ -1,5 +1,6 @@
 package com.app.client;
 
+import com.app.Token;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -8,60 +9,104 @@ import java.lang.reflect.Field;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import org.json.JSONObject;
 
 /**
  *
  * @author Felipe L. Garcia
  */
 public class ClientPost {
-    private static String urlPolls = "http://localhost:8084/polls";
+    private static String urlPolls = "http://localhost:8084/apipolls/polls";
     
     public static void main(String[] args) {
-        String output = postToken("felipe", "1234");
-        System.out.println(output);
-     
+//        String output = postToken("usuario", "senha");
+//        System.out.println(output);
+
 //        String output = postNewQuestion("Qual seu nome", "Felipe","João");
+//        System.out.println(output);
+//        output = postNewQuestion("Qual sua idade", "18","19");
+//        System.out.println(output);
+
+        String output = postChoices(1, 2);
+        System.out.println(output);
+
+//        String output = test();
 //        System.out.println(output);
         
     }
 
     public static String postChoices(int idQuest, int idChoice) {
-        String token = ClientPost.postToken("usuario", "senha");
+        Token token = ClientPost.getToken("usuario", "senha");
+        if (token == null) {
+            return null;
+        }
 
         String url = urlPolls+"/questions/" + idQuest
                 + "/choices/" + idChoice;
         
-        
         String param = "{\"idQuest\":" + idQuest 
                 + ",\"idChoice\":" + idChoice + "}";
-        System.out.println(param);
+        //System.out.println(param);
 
-        return restPolls(url, null, token);
+        return restPolls(url, null, "312321321");
     }
 
     public static String postNewQuestion(String strQuestion, String... strchoices) {
-        String token = ClientPost.postToken("usuario", "senha");
+        Token token = ClientPost.getToken("usuario", "senha");
+        if (token == null) {
+            return null;
+        }
 
         String url = urlPolls+"/questions";
-        
         
         String array = "[\""+String.join("\",\"",strchoices)+ "\"]"; 
         
         String param = "{\"question\":\"" + strQuestion + "\""
                 + ",\"choices\":" +array+ "}";
-        System.out.println(param);
+        //System.out.println(param);
 
-        return restPolls(url, param, token);
+        return restPolls(url, param, token.getAccess_token());
     }
 
-    public static String postToken(String username, String password) {
-        String url = urlPolls+"/tokens";
+    public static Token getToken(String username, String password) {
+        String response = ClientPost.postToken(username, password);
+        if(response==null){
+            return null;
+        }
         
+        JSONObject json = new JSONObject(response);
+
+        Token token = new Token();
+        token.setAccess_token(json.getString("access_token"));
+        token.setExpires_in(json.getLong("expires_in"));
+        
+        return token;
+    }
+    
+    public static String postToken(String username, String password) {
+        String url = urlPolls+"/tokens"
+                + "/"+username
+                + "/"+password;
 
         String param = "{\"username\":\"" + username + "\""
                 + ",\"password\":\"" + password + "\"}";
-        System.out.println(param);
+        //System.out.println(param);
         
+        return restPolls(url, null, null);
+    }
+
+    public static String test() {
+        String url = urlPolls + "/test";
+
+//        String param = "{\"qty\":100,\"name\":\"iPad 4\"}";
+        String strQuestion = "Qual seu nome";
+        String[] strchoices = {"Felipe", "João"};
+        String array = "[\"" + String.join("\",\"", strchoices) + "\"]";
+        String param = "{\"question\":\"" + strQuestion + "\""
+                + ",\"choices\":" + array + "}";
+
+        //System.out.println(param);
+
         return restPolls(url, param, null);
     }
 
@@ -74,12 +119,12 @@ public class ClientPost {
             conn.setDoOutput(true);
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json");
-//            conn.setRequestProperty("Accept", "application/json");
             
-//            //Authorization
-//            if (token != null && !token.trim().isEmpty()) {
-//                conn.setRequestProperty("Authorization", "token " + token);
-//            }
+            //Authorization
+            if (token != null && !token.trim().isEmpty()) {
+//                System.out.println("Authorization "+token);
+                conn.setRequestProperty("Authorization", "token " + token);
+            }
 
 //            String input = "{\"qty\":100,\"name\":\"iPad 4\"}";             
             if (input != null && !input.trim().isEmpty()) {

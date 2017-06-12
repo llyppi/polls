@@ -1,5 +1,6 @@
 package com.app.client;
 
+import com.app.Token;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -13,16 +14,16 @@ import java.net.URL;
  * @author Felipe L. Garcia
  */
 public class ClientGet {
-    private static String urlPolls = "http://localhost:8084/polls";
+    private static String urlPolls = "http://localhost:8084/apipolls/polls";
     
     public static void main(String[] args) {
-        String output = getURL();
-        System.out.println(output);
-                
-//        output = getQuestion(1);
+//        String output = getURL();
 //        System.out.println(output);
+//                
+        String output = getQuestion(1);
+        System.out.println(output);
 //        
-//        output = getQuestionPage(1);
+//        String output = getQuestionPage(2);
 //        System.out.println(output);
     }
    
@@ -30,27 +31,31 @@ public class ClientGet {
 
         return restPolls(urlPolls, null,null);
     }
+    
     public static String getQuestion(int id) {
-        String token = ClientPost.postToken("usuario", "senha");
-        
+        Token token = ClientPost.getToken("usuario", "senha");
+        if (token == null) {
+            return null;
+        }
         String url = urlPolls+"/questions/" + id;
         
         String param = "{\"question_id\":" + id + "}";
-        System.out.println(param);
+        //System.out.println(param);
 
-        return restPolls(url, null,token);
+        return restPolls(url, null,token.getAccess_token());
     }
     
     public static String getQuestionPage(int page) {
-        String token = ClientPost.postToken("usuario", "senha");
-        
+        Token token = ClientPost.getToken("usuario", "senha");
+        if (token == null) {
+            return null;
+        }
         String url = urlPolls+"/questions"+page;
         
-        
         String param = "{\"page\":" + page + "}";
-        System.out.println(param);
+        //System.out.println(param);
 
-        return restPolls(url, null,token);
+        return restPolls(url, null,token.getAccess_token());
     }    
     
     private static String restPolls(String urlGet,String input,String token) {
@@ -66,20 +71,16 @@ public class ClientGet {
             if(token!=null && !token.trim().isEmpty()){
                 conn.setRequestProperty("Authorization", "token "+token);
             }
-            //Authorization
-//            String encoding = Base64Encoder.encode("test1:test1");
-//            HttpPost httppost = new HttpPost("http://host:post/test/login");
-//            httppost.setHeader("Authorization", "Basic " + encoding);
-//            
-//            String input = "{\"qty\":100,\"name\":\"iPad 4\"}";                         
+                    
             if(input!=null && !input.trim().isEmpty()){
                 OutputStream os = conn.getOutputStream();
                 os.write(input.getBytes());
                 os.flush();
             }
 
-            if (conn.getResponseCode() != 200) {
-                throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
+            if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
+                throw new RuntimeException("Failed : HTTP error code : " 
+                        + conn.getResponseCode());
             }
 
             BufferedReader br = new BufferedReader(new InputStreamReader(
