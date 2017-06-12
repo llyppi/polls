@@ -271,7 +271,7 @@ public class PollsService {
             listToken = new HashMap<>();
         }
         //VALIDACÃO ILUSTRATIVA
-        if (!validarUsuario(username, password)) {
+        if (!validateUser(username, password)) {
             return Response.status(Response.Status.UNAUTHORIZED).build();//401
         }
 
@@ -313,6 +313,81 @@ public class PollsService {
         return null;
     }
 
+        public static String getDateISO(Date date) {
+        ZonedDateTime zone = ZonedDateTime.of(
+                LocalDateTime.ofInstant(date.toInstant(),
+                         ZoneId.systemDefault()),
+                 ZoneId.systemDefault());
+        return zone.format(DateTimeFormatter.ISO_INSTANT);
+    }
+    /**
+     * Converter Object no formato Json
+     */
+    public static String getJson(Object[] list) {
+        String json = "";
+        for (Object question : list) {
+            String js = getJson(question);
+            json += "," + js;
+        }
+        json = json.replaceFirst(",", "");
+        json = "[" + json + "]";
+        
+        return json;
+    }
+    /**
+     * Converter Object no formato Json
+     */
+    public static String getJson(Object obj) {
+        JSONObject json = new JSONObject(obj);
+        
+        String str = json.toString();
+//        str = str.replaceAll("\\\"", "\"");
+        
+        return str;
+    }
+    /**
+     * Converter Object no formato Json
+     */
+    public static String getJson2(Object obj) {
+        Method[] metodosLista = obj.getClass().getDeclaredMethods();
+
+        String lista = "";
+        for (Method method : metodosLista) {
+            if (method.getReturnType().equals(Void.TYPE)) {
+                continue;
+            }
+            if (method.getName().equalsIgnoreCase("tostring")) {
+                continue;
+            }
+            String value = "";
+            try {
+                Object invoke = method.invoke(obj);
+                
+                if(String[].class.isInstance(invoke)){
+                    String join = "[\""+String.join("\",\"",(String[]) invoke)+ "\"]";
+                    invoke = join;
+                }
+                if(Date.class.isInstance(invoke)){
+                    Date date = (Date) invoke;
+                    ZonedDateTime zone = ZonedDateTime.of(
+                            LocalDateTime.ofInstant(date.toInstant()
+                                                    ,ZoneId.systemDefault())
+                                            , ZoneId.systemDefault());
+                    invoke = zone.format(DateTimeFormatter.ISO_INSTANT);
+                }
+                
+                value = String.valueOf(invoke);
+                
+            } catch (Exception ex) {
+            }
+            String atributo = method.getName();
+            atributo = atributo.replaceAll("^set|^get|^is", "");
+
+            lista += ",\"" + atributo.toLowerCase() + "\": \"" + value + "\"";
+        }
+        return lista.replaceFirst(",", "");
+    }    
+
     /**
      * Criar Token com 1 dia de validade
      */
@@ -325,6 +400,13 @@ public class PollsService {
         token.setAccess_token(tk);
 
         return token;
+    }
+    
+    /**
+     * Validar Usuário e Senha
+     */
+    private boolean validateUser(String username, String password) {
+        return true;//INLUSTRATIVO
     }
     /**
      * Validar timeCreate+timeExp > NOW
@@ -434,85 +516,6 @@ public class PollsService {
     /**
      * Converter Date ISO
      */
-    public static String getDateISO(Date date) {
-        ZonedDateTime zone = ZonedDateTime.of(
-                LocalDateTime.ofInstant(date.toInstant(),
-                         ZoneId.systemDefault()),
-                 ZoneId.systemDefault());
-        return zone.format(DateTimeFormatter.ISO_INSTANT);
-    }
-    /**
-     * Converter Object no formato Json
-     */
-    public static String getJson(Object[] list) {
-        String json = "";
-        for (Object question : list) {
-            String js = getJson(question);
-            json += "," + js;
-        }
-        json = json.replaceFirst(",", "");
-        json = "[" + json + "]";
-        
-        return json;
-    }
-    /**
-     * Converter Object no formato Json
-     */
-    public static String getJson(Object obj) {
-        JSONObject json = new JSONObject(obj);
-        
-        String str = json.toString();
-//        str = str.replaceAll("\\\"", "\"");
-        
-        return str;
-    }
-    /**
-     * Converter Object no formato Json
-     */
-    public static String getJson2(Object obj) {
-        Method[] metodosLista = obj.getClass().getDeclaredMethods();
-
-        String lista = "";
-        for (Method method : metodosLista) {
-            if (method.getReturnType().equals(Void.TYPE)) {
-                continue;
-            }
-            if (method.getName().equalsIgnoreCase("tostring")) {
-                continue;
-            }
-            String value = "";
-            try {
-                Object invoke = method.invoke(obj);
-                
-                if(String[].class.isInstance(invoke)){
-                    String join = "[\""+String.join("\",\"",(String[]) invoke)+ "\"]";
-                    invoke = join;
-                }
-                if(Date.class.isInstance(invoke)){
-                    Date date = (Date) invoke;
-                    ZonedDateTime zone = ZonedDateTime.of(
-                            LocalDateTime.ofInstant(date.toInstant()
-                                                    ,ZoneId.systemDefault())
-                                            , ZoneId.systemDefault());
-                    invoke = zone.format(DateTimeFormatter.ISO_INSTANT);
-                }
-                
-                value = String.valueOf(invoke);
-                
-            } catch (Exception ex) {
-            }
-            String atributo = method.getName();
-            atributo = atributo.replaceAll("^set|^get|^is", "");
-
-            lista += ",\"" + atributo.toLowerCase() + "\": \"" + value + "\"";
-        }
-        return lista.replaceFirst(",", "");
-    }
-
-    private boolean validarUsuario(String username, String password) {
-        return true;//INLUSTRATIVO
-    }
-
     
 //    @POST
 //    @Path("/questions/{question}/{choices}")
