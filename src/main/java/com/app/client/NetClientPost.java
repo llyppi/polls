@@ -21,6 +21,7 @@ public class NetClientPost {
      
         String output = postNewQuestion("Qual seu nome", "Felipe","João");
         System.out.println(output);
+        
     }
 
     public static String postChoices(int idQuest, int idChoice) {
