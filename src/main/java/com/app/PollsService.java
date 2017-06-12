@@ -23,7 +23,7 @@ import javax.ws.rs.core.Response.Status;
  * @author Felipe L. Garcia
  */
 @Path("/polls")
-//@ApplicationPath("/polls")
+//@ApplicationPath("/")
 public class PollsService {
 
     private static Map<Token, Long> listToken;
@@ -41,7 +41,7 @@ public class PollsService {
      * Listar urls
      */
     @GET
-//    @Path("/test")
+//    @Path("/list")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getURL() {
         System.out.println("GET /root");
