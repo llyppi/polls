@@ -22,7 +22,8 @@ import javax.ws.rs.core.Response.Status;
  *
  * @author Felipe L. Garcia
  */
-@Path("/test")
+@Path("/polls")
+//@ApplicationPath("/polls")
 public class PollsService {
 
     private static Map<Token, Long> listToken;
@@ -35,16 +36,18 @@ public class PollsService {
         return listToken;
     }
 
-//    /**
-//     * Listar urls
-//     */
-//    @GET
-//    @Path("/")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public String[] getURL() {
-//        return new String[]{};
-//
-//    }
+    /**
+     * ROOT
+     * Listar urls
+     */
+    @GET
+//    @Path("/test")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getURL() {
+        String[] list = new String[]{"GET /questions"};
+        
+        return Response.status(Status.OK).entity(list).build();
+    }
 
     /**
      * Vizualizar detalhes da Question
@@ -80,18 +83,24 @@ public class PollsService {
                     .toArray(new Question[listQuestions.size()]);
             
             Response resp = Response.status(Status.OK).entity(list).build();
-            resp.getHeaders().add("Link",
+//            resp.getHeaders().add("Link",
+//                     "</questions?page=" + page + ">;rel=\"next\"");
+            resp.getMetadata().add("Link",
                      "</questions?page=" + page + ">;rel=\"next\"");
+            
+            return resp;
         }
         
         int pg=1;
         for (Question quest : listQuestions) {
             if (page == pg) {
                 Response resp = Response.status(Status.OK).entity(quest).build();
-                resp.getHeaders().add("Link"
-                        , "</questions?page="+page+">;rel=\"next\"");
+//                resp.getHeaders().add("Link"
+//                        , "</questions?page="+page+">;rel=\"next\"");
+                resp.getMetadata().add("Link"
+                        ,"</questions?page="+page+">;rel=\"next\"");
                 
-                return Response.status(Status.OK).entity(quest).build();
+                return resp;
             }
             pg++;
         }
@@ -123,7 +132,8 @@ public class PollsService {
 //        Response resp = getQuestion(idQuest);
 //        return Response.created(resp.getMetadata().getFirst("Location")).build();
         Response resp = Response.status(Status.CREATED).build();
-        resp.getHeaders().putSingle("Location", quest.getUrl());
+//        resp.getHeaders().putSingle("Location", quest.getUrl());
+        resp.getMetadata().putSingle("Location",quest.getUrl());
         
         return resp;
     }
@@ -135,7 +145,7 @@ public class PollsService {
     @POST
     @Path("/questions/{question}/{choices}")
     @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
+//    @Consumes(MediaType.APPLICATION_JSON)
     public Response postNewQuestion(@PathParam("question") String strQuestion
             ,@PathParam("choices") String strChoices){
         
@@ -181,7 +191,8 @@ public class PollsService {
         listQuestions.add(question);
         
         Response resp = Response.status(Status.CREATED).entity(question).build();
-        resp.getHeaders().putSingle("Location",urlQuest);
+//        resp.getHeaders().putSingle("Location",urlQuest);
+        resp.getMetadata().putSingle("Location",urlQuest);
         
         return resp;
     }
@@ -192,6 +203,7 @@ public class PollsService {
     @POST
     @Path("/tokens/{username}/{password}")
     @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response postToken(@PathParam("username") String username,
              @PathParam("password") String password) {
 
@@ -244,8 +256,8 @@ public class PollsService {
         Token token = new Token();
         token.setExpires_in(86400);//1 DIA
 
-        //HEX DA STRING,TOKEN ILUSTRATIVO
-        String tk = String.format("%040x", new BigInteger(1, username.getBytes()));
+        //TOKEN ILUSTRATIVO,HEX DA STRING
+        String tk = String.format("%040x", new BigInteger(1,username.getBytes()));
         token.setAccess_token(tk);
 
         return token;

@@ -9,12 +9,13 @@
     <url>http://maven.apache.org</url>
 
  
-   <build>
-        <finalName>restPolls</finalName>
+    <build>
+        <finalName>polls</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.3</version>
+               
             </plugin>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -24,10 +25,85 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+<!--            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <filters>xecution>
+                      
+                              <filter>
+                                    <artifact>com.sun.jersey:jersey-bundle:jar:*</artifact>
+                                    <excludes>
+                                        <exclude>javax/ws/rs/**</exclude>
+                                    </excludes>
+                                   
+                                </filter>
+                                <filter>
+                                    <artifact>com.sun.jersey:jersey-bundle:jar:*</artifact>                                                                 
+                                    <excludes>
+                                        <exclude>/**</exclude>
+                                    </excludes>
+                                </filter>
+                                <filter>
+                                    <artifact>com.sun.jersey:jersey-bundle:jar:*</artifact>                                                                 
+                                    <includes>
+                                        <include>com/sun/jersey/spi/container/servlet/**</include>
+                                    </includes>    
+                                </filter>
+                              
+                                <filter>
+                                    <artifact>com.sun.jersey:jersey-bundle:jar:*</artifact>
+                                    <excludes>
+                                        <exclude>javax/ws/rs/**</exclude>
+                                    </excludes>
+                                   
+                                </filter>
+                                <filter>
+                                    <artifact>com.sun.jersey:jersey-bundle:jar:*</artifact>
+                                    <excludes>
+                                        <exclude>com/sun/jersey/core/**</exclude>
+                                    </excludes>
+                                </filter>
+                                <filter>
+                                    <artifact>com.sun.jersey:jersey-bundle:jar:*</artifact>
+                                    <excludes>
+                                        <exclude>com/sun/jersey/spi/**</exclude>
+                                    </excludes>
+                                </filter>
+                                <filter>
+                                    <artifact>com.sun.jersey:jersey-bundle:jar:*</artifact>
+                                    <excludes>
+                                        <exclude>com/sun/jersey/server/**</exclude>
+                                    </excludes>
+                                </filter>
+                                <filter>
+                                    <artifact>com.sun.jersey:jersey-bundle:jar:*</artifact>
+                                    <excludes>
+                                        <exclude>com/sun/jersey/api/**</exclude>
+                                    </excludes>
+                                </filter>
+                                                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>com.sun.jersey:jersey-bundle:jar:*:javax.ws.rs.*</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>-->
         </plugins>
     </build>
    
-<!--    <repositories>
+    <!--    <repositories>
         <repository>
             <id>JBoss repository</id>
             <url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
@@ -35,26 +111,15 @@
     </repositories>-->
 
     <dependencies>
-        <dependency>
+<!--        <dependency>
             <groupId>javax.ws.rs</groupId>
             <artifactId>javax.ws.rs-api</artifactId>
             <version>2.0.1</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>asm</groupId>
             <artifactId>asm</artifactId>
             <version>3.3.1</version>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.jersey</groupId>
-            <artifactId>jersey-bundle</artifactId>
-            <version>1.19</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>javax.ws.rs</groupId>
-                    <artifactId>jsr311-api</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.json</groupId>
@@ -64,20 +129,25 @@
         <dependency>
             <groupId>com.sun.jersey</groupId>
             <artifactId>jersey-server</artifactId>
-            <version>1.19</version>
+            <version>1.19.4</version>         
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-bundle</artifactId>
+            <version>1.19.4</version>
+          
         </dependency>
         <dependency>
             <groupId>com.sun.jersey</groupId>
             <artifactId>jersey-core</artifactId>
-            <version>1.19</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>javax.ws.rs</groupId>
-                    <artifactId>jsr311-api</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>1.19.4</version>
+           
         </dependency>
-
+        <dependency>
+            <groupId>com.owlike</groupId>
+            <artifactId>genson</artifactId>
+            <version>0.99</version>
+        </dependency>
 
     </dependencies>
 

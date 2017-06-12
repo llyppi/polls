@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.lang.reflect.Field;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -13,24 +14,48 @@ import java.net.URL;
  * @author Felipe L. Garcia
  */
 public class NetClientPost {
-    
+
     public static void main(String[] args) {
-        String output = createToken("usuario","senha");
+//        String output = postToken("felipe", "1234");
+//        System.out.println(output);
+     
+        String output = postNewQuestion("Qual seu nome", "Felipe","João");
         System.out.println(output);
     }
 
-    /**
-     * Gerar Token
-     */
-    public static String createToken(String user, String pw) {
-        String url = "http://localhost:8084/polls/tokens/post";
-        String input = "{\"username\":" + user
-                + ",\"password\":\"" + pw + "\"}";
+    public static String postChoices(int idQuest, int idChoice) {
+        String token = NetClientPost.postToken("usuario", "senha");
 
-        return restPolls(url, input,null);
+        String url = "http://localhost:8084/polls/questions/" + idQuest
+                + "/choices/" + idChoice;
+        String param = "{\"idQuest\":" + idQuest + "\""
+                + ",\"idChoice\":" + idChoice + "\"}";
+
+        return restPolls(url, null, token);
     }
-    
-    private static String restPolls(String urlPOST,String input,String token) {
+
+    public static String postNewQuestion(String strQuestion, String... strchoices) {
+//        String token = NetClientPost.postToken("usuario", "senha");
+
+        String url = "http://localhost:8084/polls/questions";
+
+        String param = "{\"question\":" + strQuestion + "\""
+                + ",\"choices\":" + strchoices + "\"}";
+
+        return restPolls(url, param, null);
+    }
+
+    public static String postToken(String username, String password) {
+        String url = "http://localhost:8084/polls/tokens/" + username
+                + "/" + password;
+
+        String param = "{\"username\":" + username + "\""
+                + ",\"password\":" + password + "\"}";
+
+        return restPolls(url, null, null);
+    }
+
+    private static String restPolls(String urlPOST, String input, String token) {
         // http://localhost:8080/RESTfulExample/json/product/post
         try {
             URL url = new URL(urlPOST);
@@ -43,7 +68,7 @@ public class NetClientPost {
             if (token != null && !token.trim().isEmpty()) {
                 conn.setRequestProperty("Authorization", "token " + token);
             }
-            
+
 //            String input = "{\"qty\":100,\"name\":\"iPad 4\"}";             
             if (input != null && !input.trim().isEmpty()) {
                 OutputStream os = conn.getOutputStream();
@@ -53,7 +78,8 @@ public class NetClientPost {
 
             if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
                 throw new RuntimeException("Failed : HTTP error code : "
-                        + conn.getResponseCode());
+                        + conn.getResponseCode()
+                +" "+getErro(conn.getResponseCode()));
             }
             BufferedReader br = new BufferedReader(new InputStreamReader(
                     (conn.getInputStream())));
@@ -78,4 +104,18 @@ public class NetClientPost {
         return null;
     }
 
+    public static String getErro(int code) {
+        Field[] fields = HttpURLConnection.class.getDeclaredFields();
+        
+        for (Field field : fields) {
+            try {
+                if(field.toString().equals(code)){
+                    return field.getName();
+                }
+            } catch (Exception ex) {
+               
+            }
+        }
+        return "";
+    }
 }
