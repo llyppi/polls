@@ -32,7 +32,6 @@ import org.json.JSONObject;
  * @author Felipe L. Garcia
  */
 @Path("/polls")
-//@ApplicationPath("/")
 public class PollsService {
 
     private static Map<Token, Long> listToken;
