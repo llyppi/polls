@@ -13,12 +13,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
@@ -105,9 +107,10 @@ public class PollsService {
      * @param token Requer Header Authorization token ....
      */
     @GET
-    @Path("/questions{page}")
+    @Path("/questions")
     @Produces(MediaType.APPLICATION_JSON)    
-    public Response getQuestionPage(@PathParam("page") int page
+    public Response getQuestionPage(@DefaultValue("0")
+            @QueryParam("page") int page
             ,@HeaderParam("Authorization") String token) {
         
         System.out.println("GET /questions" + page);        

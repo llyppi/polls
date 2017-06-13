@@ -23,7 +23,7 @@ public class ClientGet {
 //        String output = getQuestion(1);
 //        System.out.println(output);
 //        
-        String output = getQuestionPage(2);
+        String output = getQuestionPage(0);
         System.out.println(output);
     }
    
@@ -50,7 +50,9 @@ public class ClientGet {
         if (token == null) {
             return null;
         }
-        String url = urlPolls+"/questions"+page;
+        String url = urlPolls+"/questions"+(page>0
+                                    ?"?page="+page
+                                    :"");
         
         String param = "{\"page\":" + page + "}";
         //System.out.println(param);
