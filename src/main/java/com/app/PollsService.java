@@ -44,17 +44,29 @@ public class PollsService {
     }
 
     /**
-     * ROOT Listar urls
+     * ROOT
+     * Listar Entry Point 
      */
     @GET
-//    @Path("/list")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getURL() {
         System.out.println("GET /root");
 
-        String[] list = new String[]{"GET /questions"};
-
-        return Response.status(Status.OK).entity(list).build();//200
+        List<EntryPoint> listEntry = new ArrayList<>();
+        
+        Method[] listMethod = this.getClass().getDeclaredMethods();
+        for (Method method : listMethod) {
+            Path[] paths = method.getAnnotationsByType(Path.class);
+            if(paths==null || paths.length==0){
+                continue;
+            }
+            EntryPoint entry = new EntryPoint();
+            entry.setQuestion_url(paths[0].value());
+            listEntry.add(entry);
+        }
+        String json = getJson(listEntry.toArray(new EntryPoint[listEntry.size()]));
+        
+        return Response.status(Status.OK).entity(json).build();//200
     }
 
     /**
@@ -313,7 +325,10 @@ public class PollsService {
         return null;
     }
 
-        public static String getDateISO(Date date) {
+    /**
+     * Converter Date ISO
+     */
+    public static String getDateISO(Date date) {
         ZonedDateTime zone = ZonedDateTime.of(
                 LocalDateTime.ofInstant(date.toInstant(),
                          ZoneId.systemDefault()),
@@ -481,7 +496,7 @@ public class PollsService {
 // 
 //        return Response.ok().entity( root ).build();
 //    }
-// 
+//// 
 //    private void addTo( ObjectNode resourceNode, String uriPrefix, AbstractResourceMethod srm, String path )
 //    {
 //        if ( resourceNode.get( uriPrefix ) == null )
@@ -513,9 +528,7 @@ public class PollsService {
 // 
 //        return false;
 //    }
-    /**
-     * Converter Date ISO
-     */
+ 
     
 //    @POST
 //    @Path("/questions/{question}/{choices}")
