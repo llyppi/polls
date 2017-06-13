@@ -5,6 +5,10 @@
 ## Installation
     Build project,Netbeas,Eclipse
 
+## CI,CD
+    https://codeclimate.com/github/llyppi/polls
+    https://www.codacy.com/app/llyppi/polls/dashboard
+
 ## Test GET/POST
     https://multware.com/apipolls
  
