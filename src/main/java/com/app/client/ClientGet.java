@@ -20,11 +20,11 @@ public class ClientGet {
 //        String output = getURL();
 //        System.out.println(output);
 //                
-        String output = getQuestion(1);
-        System.out.println(output);
-//        
-//        String output = getQuestionPage(2);
+//        String output = getQuestion(1);
 //        System.out.println(output);
+//        
+        String output = getQuestionPage(2);
+        System.out.println(output);
     }
    
     public static String getURL() {

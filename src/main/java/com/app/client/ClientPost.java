@@ -22,13 +22,13 @@ public class ClientPost {
 //        String output = postToken("usuario", "senha");
 //        System.out.println(output);
 
-//        String output = postNewQuestion("Qual seu nome", "Felipe","João");
-//        System.out.println(output);
-//        output = postNewQuestion("Qual sua idade", "18","19");
-//        System.out.println(output);
-
-        String output = postChoices(1, 2);
+        String output = postNewQuestion("Qual seu nome", "Felipe","João");
         System.out.println(output);
+        output = postNewQuestion("Qual sua idade", "18","19");
+        System.out.println(output);
+
+//        String output = postChoices(1, 2);
+//        System.out.println(output);
 
 //        String output = test();
 //        System.out.println(output);
