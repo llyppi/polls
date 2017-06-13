@@ -39,9 +39,6 @@ public class ClientGet {
         }
         String url = urlPolls+"/questions/" + id;
         
-        String param = "{\"question_id\":" + id + "}";
-        //System.out.println(param);
-
         return restPolls(url, null,token.getAccess_token());
     }
     
@@ -54,9 +51,6 @@ public class ClientGet {
                                     ?"?page="+page
                                     :"");
         
-        String param = "{\"page\":" + page + "}";
-        //System.out.println(param);
-
         return restPolls(url, null,token.getAccess_token());
     }    
     

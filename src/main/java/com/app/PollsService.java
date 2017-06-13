@@ -102,7 +102,7 @@ public class PollsService {
     }
 
     /**
-     * Coleção de Questions por página
+     * Listar Questions por página
      * @param token Requer Header Authorization token ....
      */
     @GET
@@ -273,10 +273,10 @@ public class PollsService {
      * Criar Token com usuario e senha
      */
     @POST
-    @Path("/tokens/{username}/{password}")
+    @Path("/tokens")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response postToken(@PathParam("username") String username,
-            @PathParam("password") String password) {
+    public Response postToken(@QueryParam("username") String username,
+            @QueryParam("password") String password) {
 
         System.out.println("POST /tokens/" + username
                 + "/" + password);
