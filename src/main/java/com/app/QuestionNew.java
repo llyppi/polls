@@ -13,8 +13,6 @@ public class QuestionNew {
     private String question;
     private String[] choices;
 
-    public QuestionNew() {
-    }
 
     public String getQuestion() {
         return question;

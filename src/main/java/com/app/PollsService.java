@@ -37,9 +37,7 @@ public class PollsService {
     private static Map<Token, Long> listToken;
     private static List<Question> listQuestions;
 
-    public PollsService() {
-    }
-
+   
     public static Map<Token, Long> getListToken() {
         return listToken;
     }

@@ -12,9 +12,6 @@ package com.app;
 public class EntryPoint {
     private String question_url;
 
-    public EntryPoint() {
-    }
-
     public String getQuestion_url() {
         return question_url;
     }

@@ -13,9 +13,6 @@ public class Token {
     private String access_token;
     private long expires_in;   
 
-    public Token() {
-    }
-
     public String getAccess_token() {
         return access_token;
     }

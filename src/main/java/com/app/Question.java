@@ -16,9 +16,6 @@ public class Question {
     private String url;
     private Choice[] choices;
 
-    public Question() {
-    }
-
     public String getQuestion() {
         return question;
     }

@@ -15,9 +15,6 @@ public class Choice {
     private String choice;
     private String url;
     private int votes;
-    
-    public Choice() {
-    }
 
     public int getChoice_id() {
         return choice_id;
