@@ -90,8 +90,6 @@ public class PollsService {
             String json =  getJson(question);
             
             ResponseBuilder builder = Response.status(Status.OK);//200
-            builder.header("Authorization","token "+token);
-            
             Response resp = builder.entity(json).build();
             
             return resp;
