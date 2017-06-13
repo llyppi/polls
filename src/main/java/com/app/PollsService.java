@@ -81,7 +81,7 @@ public class PollsService {
         
         System.out.println("GET /questions/" + id);
         
-        if(!validateToken(token)){
+        if(!validate(token)){
             return Response.status(Status.UNAUTHORIZED).build();//401
         }
 
@@ -112,7 +112,7 @@ public class PollsService {
         
         System.out.println("GET /questions" + page);        
         
-        if (!validateToken(token)) {
+        if (!validate(token)) {
             return Response.status(Status.UNAUTHORIZED).build();//401
         }
         
@@ -179,7 +179,7 @@ public class PollsService {
         System.out.println("POST /questions/" + idQuest
                 + "/choices/" + idChoice);
         
-        if (!validateToken(token)) {
+        if (!validate(token)) {
             return Response.status(Status.UNAUTHORIZED).build();//401
         }
 
@@ -215,7 +215,7 @@ public class PollsService {
         
         System.out.println("POST /questions/" + getJson(questNew));
 
-        if (!validateToken(token)) {
+        if (!validate(token)) {
             return Response.status(Status.UNAUTHORIZED).build();//401
         }
         
@@ -283,7 +283,7 @@ public class PollsService {
             listToken = new HashMap<>();
         }
         //VALIDACÃO ILUSTRATIVA
-        if (!validateUser(username, password)) {
+        if (!validate(username, password)) {
             return Response.status(Response.Status.UNAUTHORIZED).build();//401
         }
 
@@ -420,13 +420,13 @@ public class PollsService {
     /**
      * Validar Usuário e Senha
      */
-    private boolean validateUser(String username, String password) {
+    private boolean validate(String username, String password) {
         return true;//INLUSTRATIVO
     }
     /**
      * Validar timeCreate+timeExp > NOW
      */
-    private boolean validateToken(String token) {
+    private boolean validate(String token) {
         if (token == null || token.isEmpty()) {
             return false;
         }
