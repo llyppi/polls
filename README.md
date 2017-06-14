@@ -8,6 +8,8 @@
 ## CI,CD
     https://codeclimate.com/github/llyppi/polls
     https://www.codacy.com/app/llyppi/polls/dashboard
+    https://travis-ci.org/llyppi/polls
+    https://codecov.io/gh/llyppi/polls
 
 ## Test GET/POST
     https://multware.com/apipolls
