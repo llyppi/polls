@@ -11,10 +11,9 @@
    <br>https://travis-ci.org/llyppi/polls
    <br>https://codecov.io/gh/llyppi/polls
 
-## Test GET/POST
-  https://multware.com/apipolls
+## Teste 
+https://multware.com/apipolls
 
-## Pacote teste 
 </tab>[ClientGet](../blob/master/src/main/java/com/app/client/ClientGet.java)
     <br>[ClientPost](../blob/master/src/main/java/com/app/client/ClientPost.java)
 
@@ -32,69 +31,71 @@
 * POST http://localhost:8084/apipolls/polls/tokens?username=usuario&password=senha            
 
 ## Java            
-    ```
-    try {
-        String urlPolls = "http://localhost:8080/apipolls/polls";
 
-        String urlQuestions = urlPolls+"/questions/" + 1; 
+    ```javascript
 
-        int page = 1;
-        String urlQuestionsPage = urlPolls+"/questions"+(page>0
-                                ?"?page="+page
-                                :""); 
+try {
+    String urlPolls = "http://localhost:8080/apipolls/polls";
 
-        String username="user";
-        String password="pass";
-        String urlToken = urlPollsurlPolls+"/tokens"
-                          + "?username="+username+"&password="+password;
+    String urlQuestions = urlPolls+"/questions/" + 1; 
 
-        String urlChoices = urlPolls+"/questions/" + 1+ "/choices/" + 1;
+    int page = 1;
+    String urlQuestionsPage = urlPolls+"/questions"+(page>0
+                            ?"?page="+page
+                            :""); 
 
-        String urlNewQuestion = urlPolls+"/questions";
+    String username="user";
+    String password="pass";
+    String urlToken = urlPollsurlPolls+"/tokens"
+                      + "?username="+username+"&password="+password;
 
-        String question = "Qual sua idade";
-        String[] choices = {"18","19"};
+    String urlChoices = urlPolls+"/questions/" + 1+ "/choices/" + 1;
 
-        String array = "[\""+String.join("\",\"",choices)+ "\"]"; 
+    String urlNewQuestion = urlPolls+"/questions";
 
-        String input = "{\"question\":\"" + question + "\""
-            + ",\"choices\":" +array+ "}";
+    String question = "Qual sua idade";
+    String[] choices = {"18","19"};
 
-        Token token = ClientPost.getToken("usuario", "senha");
+    String array = "[\""+String.join("\",\"",choices)+ "\"]"; 
 
-        URL url = new URL(?);
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setDoOutput(true);
-        conn.setRequestMethod("POST");
-        conn.setRequestProperty("Content-Type", "application/json");
+    String input = "{\"question\":\"" + question + "\""
+        + ",\"choices\":" +array+ "}";
 
-        //Authorization
-        if (token != null) {
-            conn.setRequestProperty("Authorization"
-                    , "token " + token.getAccess_token());
-        }
+    Token token = ClientPost.getToken("usuario", "senha");
 
-        if (input != null && !input.trim().isEmpty()) {
-            OutputStream os = conn.getOutputStream();
-            os.write(input.getBytes());
-            os.flush();
-        }
+    URL url = new URL(?);
+    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+    conn.setDoOutput(true);
+    conn.setRequestMethod("POST");
+    conn.setRequestProperty("Content-Type", "application/json");
 
-        if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
-            throw new RuntimeException("Failed : HTTP error code : "
-                    + conn.getResponseCode());
-        }
-
-        BufferedReader br = new BufferedReader(new InputStreamReader(
-                (conn.getInputStream())));
-
-        String output = "";
-        String read;
-        while ((read = br.readLine()) != null) {
-            output += read;
-        }
-        conn.disconnect();
-
-    } catch (Exception ex) {
-
+    //Authorization
+    if (token != null) {
+        conn.setRequestProperty("Authorization"
+                , "token " + token.getAccess_token());
     }
+
+    if (input != null && !input.trim().isEmpty()) {
+        OutputStream os = conn.getOutputStream();
+        os.write(input.getBytes());
+        os.flush();
+    }
+
+    if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
+        throw new RuntimeException("Failed : HTTP error code : "
+                + conn.getResponseCode());
+    }
+
+    BufferedReader br = new BufferedReader(new InputStreamReader(
+            (conn.getInputStream())));
+
+    String output = "";
+    String read;
+    while ((read = br.readLine()) != null) {
+        output += read;
+    }
+    conn.disconnect();
+
+} catch (Exception ex) {
+
+}
