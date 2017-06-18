@@ -31,68 +31,70 @@
     Gerar Token
     POST http://localhost:8084/apipolls/polls/tokens?username=usuario&password=senha
 
-            try {
-                String urlPolls = "http://localhost:8080/apipolls/polls";
+        ```
+    try {
+        String urlPolls = "http://localhost:8080/apipolls/polls";
 
-                String urlQuestions = urlPolls+"/questions/" + 1; 
+        String urlQuestions = urlPolls+"/questions/" + 1; 
 
-                int page = 1;
-                String urlQuestionsPage = urlPolls+"/questions"+(page>0
-                                        ?"?page="+page
-                                        :""); 
+        int page = 1;
+        String urlQuestionsPage = urlPolls+"/questions"+(page>0
+                                ?"?page="+page
+                                :""); 
 
-                String username="user";
-                String password="pass";
-                String urlToken = urlPollsurlPolls+"/tokens"
-                                  + "?username="+username+"&password="+password;
+        String username="user";
+        String password="pass";
+        String urlToken = urlPollsurlPolls+"/tokens"
+                          + "?username="+username+"&password="+password;
 
-                String urlChoices = urlPolls+"/questions/" + 1+ "/choices/" + 1;
+        String urlChoices = urlPolls+"/questions/" + 1+ "/choices/" + 1;
 
-                String urlNewQuestion = urlPolls+"/questions";
+        String urlNewQuestion = urlPolls+"/questions";
 
-                String question = "Qual sua idade";
-                String[] choices = {"18","19"};
+        String question = "Qual sua idade";
+        String[] choices = {"18","19"};
 
-                String array = "[\""+String.join("\",\"",choices)+ "\"]"; 
+        String array = "[\""+String.join("\",\"",choices)+ "\"]"; 
 
-                String input = "{\"question\":\"" + question + "\""
-                    + ",\"choices\":" +array+ "}";
+        String input = "{\"question\":\"" + question + "\""
+            + ",\"choices\":" +array+ "}";
 
-                Token token = ClientPost.getToken("usuario", "senha");
+        Token token = ClientPost.getToken("usuario", "senha");
 
-                URL url = new URL(?);
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                conn.setDoOutput(true);
-                conn.setRequestMethod("POST");
-                conn.setRequestProperty("Content-Type", "application/json");
+        URL url = new URL(?);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setDoOutput(true);
+        conn.setRequestMethod("POST");
+        conn.setRequestProperty("Content-Type", "application/json");
 
-                //Authorization
-                if (token != null) {
-                    conn.setRequestProperty("Authorization"
-                            , "token " + token.getAccess_token());
-                }
+        //Authorization
+        if (token != null) {
+            conn.setRequestProperty("Authorization"
+                    , "token " + token.getAccess_token());
+        }
 
-                if (input != null && !input.trim().isEmpty()) {
-                    OutputStream os = conn.getOutputStream();
-                    os.write(input.getBytes());
-                    os.flush();
-                }
+        if (input != null && !input.trim().isEmpty()) {
+            OutputStream os = conn.getOutputStream();
+            os.write(input.getBytes());
+            os.flush();
+        }
 
-                if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
-                    throw new RuntimeException("Failed : HTTP error code : "
-                            + conn.getResponseCode());
-                }
+        if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
+            throw new RuntimeException("Failed : HTTP error code : "
+                    + conn.getResponseCode());
+        }
 
-                BufferedReader br = new BufferedReader(new InputStreamReader(
-                        (conn.getInputStream())));
+        BufferedReader br = new BufferedReader(new InputStreamReader(
+                (conn.getInputStream())));
 
-                String output = "";
-                String read;
-                while ((read = br.readLine()) != null) {
-                    output += read;
-                }
-                conn.disconnect();
+        String output = "";
+        String read;
+        while ((read = br.readLine()) != null) {
+            output += read;
+        }
+        conn.disconnect();
 
-            } catch (Exception ex) {
+    } catch (Exception ex) {
 
-            }
+    }
+    ```
