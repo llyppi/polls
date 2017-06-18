@@ -32,8 +32,8 @@
 * POST http://localhost:8084/apipolls/polls/tokens?username=usuario&password=senha            
 
 ## Java            
-```java
-    ```java try {
+    ```
+    try {
         String urlPolls = "http://localhost:8080/apipolls/polls";
 
         String urlQuestions = urlPolls+"/questions/" + 1; 
@@ -98,4 +98,3 @@
     } catch (Exception ex) {
 
     }
-    ```    
