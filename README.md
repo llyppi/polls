@@ -32,8 +32,7 @@ https://multware.com/apipolls
 
 ## Java            
 
-    ```javascript
-
+``````javascript
 try {
     String urlPolls = "http://localhost:8080/apipolls/polls";
 
@@ -99,3 +98,4 @@ try {
 } catch (Exception ex) {
 
 }
+```
