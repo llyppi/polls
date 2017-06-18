@@ -14,8 +14,8 @@
 ## Teste 
 https://multware.com/apipolls
 
-</tab>[ClientGet](../blob/master/src/main/java/com/app/client/ClientGet.java)
-    <br>[ClientPost](../blob/master/src/main/java/com/app/client/ClientPost.java)
+</tab>[ClientGet](../master/src/main/java/com/app/client/ClientGet.java)
+    <br>[ClientPost](../master/src/main/java/com/app/client/ClientPost.java)
 
 * Listar Entry Point 
 * GET http://localhost:8080/apipolls/polls
