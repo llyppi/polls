@@ -6,17 +6,17 @@
     Build project,Netbeas,Eclipse
 
 ## CI,CD
-    [I'm an inline-style link](https://codeclimate.com/github/llyppi/polls)
-    [I'm an inline-style link](https://www.codacy.com/app/llyppi/polls/dashboard)
-    [I'm an inline-style link](https://travis-ci.org/llyppi/polls)
-    [I'm an inline-style link](https://codecov.io/gh/llyppi/polls)
+    <https://codeclimate.com/github/llyppi/polls>
+    <https://www.codacy.com/app/llyppi/polls/dashboard>
+    <https://travis-ci.org/llyppi/polls>
+    <https://codecov.io/gh/llyppi/polls>
 
 ## Test GET/POST
-     [I'm an inline-style link](https://multware.com/apipolls)
+     <https://multware.com/apipolls>
  
     Pacote teste 
-    [I'm an inline-style link](https://github.com/llyppi/polls/blob/master/src/main/java/com/app/client/ClientGet.java)
-    [I'm an inline-style link](https://github.com/llyppi/polls/blob/master/src/main/java/com/app/client/ClientPost.java)
+    [ClientGet](../blob/master/src/main/java/com/app/client/ClientGet.java)
+    [ClientPost](../blob/master/src/main/java/com/app/client/ClientPost.java)
 
     Listar Entry Point 
     GET http://localhost:8080/apipolls/polls
