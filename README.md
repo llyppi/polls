@@ -18,20 +18,21 @@
 </tab>[ClientGet](../blob/master/src/main/java/com/app/client/ClientGet.java)
     <br>[ClientPost](../blob/master/src/main/java/com/app/client/ClientPost.java)
 
-    Listar Entry Point 
-    GET http://localhost:8080/apipolls/polls
-    Criar nova Question
-    POST http://localhost:8080/apipolls/polls/questions   Requer Header Authorization token 
-    Vizualizar detalhes da Question
-    GET http://localhost:8080/apipolls/polls/questions/1    Requer Header Authorization token 
-    Listar Questions por página
-    GET http://localhost:8080/apipolls/polls/questions?page=1   Requer Header Authorization token 
-    Votar na Questions
-    POST http://localhost:8080/apipolls/polls/questions/1/choices/1   Requer Header Authorization token 
-    Gerar Token
-    POST http://localhost:8084/apipolls/polls/tokens?username=usuario&password=senha
+* Listar Entry Point 
+* GET http://localhost:8080/apipolls/polls
+* Criar nova Question
+* POST http://localhost:8080/apipolls/polls/questions   Requer Header Authorization token 
+* Vizualizar detalhes da Question
+* GET http://localhost:8080/apipolls/polls/questions/1    Requer Header Authorization token 
+* Listar Questions por página
+* GET http://localhost:8080/apipolls/polls/questions?page=1   Requer Header Authorization token 
+* Votar na Questions
+* POST http://localhost:8080/apipolls/polls/questions/1/choices/1   Requer Header Authorization token 
+* Gerar Token
+* POST http://localhost:8084/apipolls/polls/tokens?username=usuario&password=senha            
 
-        ```
+## Java
+    ```java
     try {
         String urlPolls = "http://localhost:8080/apipolls/polls";
 
@@ -97,4 +98,4 @@
     } catch (Exception ex) {
 
     }
-    ```
+    ```    
