@@ -1,16 +1,17 @@
-Codacy [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7c7334e6f740470fbe6920c4c974ff0b)](https://www.codacy.com/app/llyppi/polls?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=llyppi/polls&amp;utm_campaign=Badge_Grade) 
-<br>Travis-ci [![Build Status](https://travis-ci.org/llyppi/polls.svg?branch=master)](https://travis-ci.org/llyppi/polls)
+## Analysis & Coverage
+    [![Code Climate](https://codeclimate.com/github/llyppi/membrane.png)](https://codeclimate.com/github/llyppi/polls)
+    <br>https://codecov.io/gh/llyppi/polls
+    Codacy: [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7c7334e6f740470fbe6920c4c974ff0b)](https://www.codacy.com       /app/llyppi/polls?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=llyppi/polls&amp;utm_campaign=Badge_Grade) 
+## CI
+<br>Travis-ci: [![Build Status](https://travis-ci.org/llyppi/polls.svg?branch=master)](https://travis-ci.org/llyppi/polls)
+
 
 ## Synopsis  
     Polls API
-    RESTFul WebServices,utilizando plataforma Java8,API(JAX-RS)Jersey,Tomcat 8,Maven
+    RESTFul WebServices Java8 API(JAX-RS)Jersey Tomcat 8 Maven
 
 ## Installation
     Build project,Netbeas,Eclipse
-
-   https://codeclimate.com/github/llyppi/polls
-   
-   <br>https://codecov.io/gh/llyppi/polls
 
 ## Teste 
 https://multware.com/apipolls
