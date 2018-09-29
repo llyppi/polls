@@ -1,4 +1,7 @@
 ## Synopsis  
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6efb3b8e08444c46b4999dab2f1f77b2)](https://app.codacy.com/app/llyppi/polls?utm_source=github.com&utm_medium=referral&utm_content=llyppi/polls&utm_campaign=Badge_Grade_Dashboard)
+
     Polls API
     RESTFul WebServices,utilizando plataforma Java8,API(JAX-RS)Jersey,Tomcat 8,Maven
 
