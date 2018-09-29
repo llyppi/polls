@@ -1,21 +1,23 @@
+## Coverage
+ [![Code Climate](https://codeclimate.com/github/llyppi/polls.png)](https://codeclimate.com/github/llyppi/polls)
+ <br>[![codecov](https://codecov.io/gh/llyppi/polls/branch/master/graph/badge.svg)](https://codecov.io/gh/llyppi/polls)
+## Analysis
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7c7334e6f740470fbe6920c4c974ff0b)](https://www.codacy.com/app/llyppi/polls?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=llyppi/polls&amp;utm_campaign=Badge_Grade) 
+## Continuous Integration 
+[![Build Status](https://travis-ci.org/llyppi/polls.svg?branch=master)](https://travis-ci.org/llyppi/polls)
+
 ## Synopsis  
     Polls API
-    RESTFul WebServices,utilizando plataforma Java8,API(JAX-RS)Jersey,Tomcat 8,Maven
+    RESTFul WebServices Java8 API(JAX-RS)Jersey Tomcat 8 Maven
 
 ## Installation
     Build project,Netbeas,Eclipse
 
-## CI,CD
-   https://codeclimate.com/github/llyppi/polls
-   <br>https://www.codacy.com/app/llyppi/polls/dashboard
-   <br>https://travis-ci.org/llyppi/polls
-   <br>https://codecov.io/gh/llyppi/polls
-
 ## Teste 
 https://multware.com/apipolls
 
-</tab>[ClientGet](../blob/master/src/main/java/com/app/client/ClientGet.java)
-    <br>[ClientPost](../blob/master/src/main/java/com/app/client/ClientPost.java)
+</tab>[ClientGet](../master/src/main/java/com/app/client/ClientGet.java)
+    <br>[ClientPost](../master/src/main/java/com/app/client/ClientPost.java)
 
 * Listar Entry Point 
 * GET http://localhost:8080/apipolls/polls
