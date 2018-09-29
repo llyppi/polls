@@ -1,9 +1,7 @@
-## Coverage
+## Continuous Integration|Coverage|Analysis
  [![Code Climate](https://codeclimate.com/github/llyppi/polls.png)](https://codeclimate.com/github/llyppi/polls)
- <br>[![codecov](https://codecov.io/gh/llyppi/polls/branch/master/graph/badge.svg)](https://codecov.io/gh/llyppi/polls)
-## Analysis
+[![codecov](https://codecov.io/gh/llyppi/polls/branch/master/graph/badge.svg)](https://codecov.io/gh/llyppi/polls)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7c7334e6f740470fbe6920c4c974ff0b)](https://www.codacy.com/app/llyppi/polls?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=llyppi/polls&amp;utm_campaign=Badge_Grade) 
-## Continuous Integration 
 [![Build Status](https://travis-ci.org/llyppi/polls.svg?branch=master)](https://travis-ci.org/llyppi/polls)
 
 ## Synopsis  
