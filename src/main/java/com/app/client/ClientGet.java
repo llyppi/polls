@@ -91,12 +91,9 @@ public class ClientGet {
 
             return output;
 
-        } catch (MalformedURLException e) {
+        } catch (Exception e) {
 
-            e.printStackTrace();
-        } catch (IOException e) {
-
-            e.printStackTrace();
+            System.out.println(e);
 
         }
         return null;
