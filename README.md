@@ -1,3 +1,5 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7c7334e6f740470fbe6920c4c974ff0b)](https://www.codacy.com/app/llyppi/polls?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=llyppi/polls&amp;utm_campaign=Badge_Grade)
+
 ## Synopsis  
     Polls API
     RESTFul WebServices,utilizando plataforma Java8,API(JAX-RS)Jersey,Tomcat 8,Maven
