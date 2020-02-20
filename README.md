@@ -25,7 +25,7 @@
 * Votar na Questions
 * POST http://localhost:8080/apipolls/polls/questions/1/choices/1   Requer Header Authorization token 
 * Gerar Token
-* POST http://localhost:8084/apipolls/polls/tokens?username=usuario&password=senha            
+* POST http://localhost:8080/apipolls/polls/tokens?username=usuario&password=senha            
 
 ## Java            
 
