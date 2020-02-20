@@ -11,9 +11,6 @@
 ## Installation
     Build project,Netbeas,Eclipse
 
-## Teste 
-https://multware.com/apipolls
-
 </tab>[ClientGet](../master/src/main/java/com/app/client/ClientGet.java)
     <br>[ClientPost](../master/src/main/java/com/app/client/ClientPost.java)
 
