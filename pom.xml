@@ -1,12 +1,12 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.app</groupId>
+    
+    <groupId>br.com.app</groupId>
     <artifactId>apiPolls</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
     <name>apiPolls</name>
-    <url>http://maven.apache.org</url>
 
  
     <build>
@@ -175,7 +175,27 @@
             <artifactId>genson</artifactId>
             <version>0.99</version>
         </dependency>
-
+        <dependency>
+            <groupId>uteisJava</groupId>
+            <artifactId>uteisJava</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-email</artifactId>
+            <version>1.4</version>
+            <classifier>javadoc</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.axis</groupId>
+            <artifactId>axis</artifactId>
+            <version>1.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.axis</groupId>
+            <artifactId>axis-jaxrpc</artifactId>
+            <version>1.4</version>
+        </dependency>
     </dependencies>
 
  

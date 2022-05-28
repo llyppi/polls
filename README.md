@@ -1,7 +1,9 @@
-## Continuous Integration|Coverage|Analysis
+## Coverage
  [![Code Climate](https://codeclimate.com/github/llyppi/polls.png)](https://codeclimate.com/github/llyppi/polls)
-[![codecov](https://codecov.io/gh/llyppi/polls/branch/master/graph/badge.svg)](https://codecov.io/gh/llyppi/polls)
+ <br>[![codecov](https://codecov.io/gh/llyppi/polls/branch/master/graph/badge.svg)](https://codecov.io/gh/llyppi/polls)
+## Analysis
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7c7334e6f740470fbe6920c4c974ff0b)](https://www.codacy.com/app/llyppi/polls?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=llyppi/polls&amp;utm_campaign=Badge_Grade) 
+## Continuous Integration 
 [![Build Status](https://travis-ci.org/llyppi/polls.svg?branch=master)](https://travis-ci.org/llyppi/polls)
 
 ## Synopsis  
@@ -10,6 +12,9 @@
 
 ## Installation
     Build project,Netbeas,Eclipse
+
+## Teste 
+https://multware.com/apipolls
 
 </tab>[ClientGet](../master/src/main/java/com/app/client/ClientGet.java)
     <br>[ClientPost](../master/src/main/java/com/app/client/ClientPost.java)
@@ -25,7 +30,7 @@
 * Votar na Questions
 * POST http://localhost:8080/apipolls/polls/questions/1/choices/1   Requer Header Authorization token 
 * Gerar Token
-* POST http://localhost:8080/apipolls/polls/tokens?username=usuario&password=senha            
+* POST http://localhost:8084/apipolls/polls/tokens?username=usuario&password=senha            
 
 ## Java            
 
